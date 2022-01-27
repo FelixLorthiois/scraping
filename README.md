@@ -1,0 +1,1 @@
+contains three scrapers: crypto, townhall and deputy
