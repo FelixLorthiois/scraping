@@ -26,9 +26,12 @@ def townhall_scraper
   array_of_hash_towns = []
 
   # at each step of the loop, we scrap the name of the town, the townhall_url and then the townhall email
+    town_names_nodes = page.xpath("//a[@class = 'lientxt']")
+    townhall_urls_nodes = page.xpath("//a[@class = 'lientxt']/@href")
+    
     town_number.times do |i|
-    town_name = page.xpath("//a[@class = 'lientxt']")[i].text
-    townhall_url = "https://www.annuaire-des-mairies.com" + page.xpath("//a[@class = 'lientxt']/@href")[i].text[1..-1]
+    town_name =  town_names_nodes[i].text
+    townhall_url = "https://www.annuaire-des-mairies.com" + townhall_urls_nodes[i].text[1..-1]
     townhall_email = get_townhall_email(townhall_url)
     
     hash_town = {town_name => townhall_email}       # wraps-up in a hash
