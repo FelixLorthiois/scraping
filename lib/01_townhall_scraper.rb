@@ -30,13 +30,13 @@ def townhall_scraper
     townhall_urls_nodes = page.xpath("//a[@class = 'lientxt']/@href")
     
     town_number.times do |i|
-    town_name =  town_names_nodes[i].text
-    townhall_url = "https://www.annuaire-des-mairies.com" + townhall_urls_nodes[i].text[1..-1]
-    townhall_email = get_townhall_email(townhall_url)
+      town_name =  town_names_nodes[i].text
+      townhall_url = "https://www.annuaire-des-mairies.com" + townhall_urls_nodes[i].text[1..-1]
+      townhall_email = get_townhall_email(townhall_url)
     
-    hash_town = {town_name => townhall_email}       # wraps-up in a hash
-    array_of_hash_towns << hash_town                # includes the hash in output array
-    puts "email of #{town_name} has been scraped and stored"
-  end
+      hash_town = {town_name => townhall_email}       # wraps-up in a hash
+      array_of_hash_towns << hash_town                # includes the hash in output array
+      puts "email of #{town_name} has been scraped and stored"
+    end
   return array_of_hash_towns
 end
